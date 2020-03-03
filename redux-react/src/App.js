@@ -1,23 +1,13 @@
 import React from "react";
 import "./App.css";
-import { connect } from "react-redux";
-import { increment, decrement, reset } from "./actions";
+import Counter from "./Counter";
+import { Provider } from "react-redux";
+import store from "./store";
 
-const App = ({ count, increment, decrement, reset }) => (
-  <main className="container">
-    <p className="count">{count}</p>
-    <section className="controls">
-      <button onClick={increment}>Increment</button>
-      <button onClick={decrement}>Decrement</button>
-      <button onClick={reset}>Reset</button>
-    </section>
-  </main>
+const App = () => (
+  <Provider store={store}>
+    <Counter />
+  </Provider>
 );
 
-const mapStateToProps = state => ({
-  count: state.count
-});
-
-const mapDispatchToProps = { increment, decrement, reset };
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default App;
